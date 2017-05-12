@@ -16,9 +16,7 @@ render: function () {
 
 });
 
-var routes = (
-
-);
+var routes 
 
 document.addEventListener("DOMContentLoaded", function (){
   ReactDOM.render(<Router history={HashHistory} routes={routes}/>,
