@@ -1,5 +1,5 @@
 var SessionServerActions = require('../actions/server_actions/session_server_actions');
-var hashHistory = require('react-router').hashHistory;
+
 
 module.exports = {
   fetchCurrentUser: function () {
