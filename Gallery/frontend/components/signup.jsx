@@ -2,7 +2,7 @@ import React from 'react';
 import SessionStore from '../stores/session_store';
 import SessionActions from '../actions/client_actions/session_actions';
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 
   constructor(props) {
     super(props);
@@ -10,10 +10,11 @@ class Login extends React.Component {
       username: '',
       password: '',
       errors: SessionStore.errors()
-    };
+    } ;
+
     this.userChange = this.userChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
-    this.logIn = this.logIn.bind(this);
+    this.signUp = this.signUp.bind(this);
     this.onChange = this.onChange.bind(this);
 
   }
@@ -38,12 +39,13 @@ class Login extends React.Component {
     this.setState({password: event.target.value});
   }
 
-  logIn(event) {
+  signUp(event) {
     event.preventDefault();
-    SessionActions.logIn({
+    SessionActions.signUp({
       username: this.state.username,
       password: this.state.password
     });
+
   }
 
   render() {
@@ -51,18 +53,19 @@ class Login extends React.Component {
     var password = this.state.password;
     return (
       <div>
-        <form>
-          <label id='username'>Username: <input type='text' value={username} onChange={this.userChange}>
-          </input></label>
+      <form>
+        <label id='username'>Create a Username: <input type='text' value={username} onChange={this.userChange}>
+        </input></label>
 
-          <label id='password'>Password: <input type='text' value={password} onChange={this.passwordChange}>
-          </input></label>
-          <button id='login_button' onClick={this.logIn} value='Log In'>Log In</button>
-        </form>
+        <label id='password'>Create a Password: <input type='text' value={password} onChange={this.passwordChange}>
+        </input></label>
+
+        <button id='signup_button' onClick={this.signUp} value='Create Account'>Create Account</button>
+      </form>
       </div>
     );
   }
 
 }
 
-export default Login;
+export default SignUp;

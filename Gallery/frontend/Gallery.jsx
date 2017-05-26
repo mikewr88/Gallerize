@@ -7,12 +7,15 @@ var IndexRoute = require('react-router').IndexRoute;
 var Link = require('react-router').Link;
 
 import Navbar from './components/navbar';
-
+import LogIn from './components/login';
+import SignUp from './components/signup';
 
 class App extends React.Component {
   render() {
-    return(<div>Hello
-      <Route path='/' component={Navbar}></Route>
+    return(<div>
+        <Route path='/' component={Navbar}/>
+          <Route path='/login' component={LogIn}/>
+          <Route path='/signup' component={SignUp}/>
       </div>);
   }
 };
