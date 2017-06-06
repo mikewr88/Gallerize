@@ -57,7 +57,7 @@ class SignUp extends React.Component {
         <label id='username'>Create a Username: <input type='text' value={username} onChange={this.userChange}>
         </input></label>
 
-        <label id='password'>Create a Password: <input type='text' value={password} onChange={this.passwordChange}>
+        <label id='password'>Create a Password: <input type='password' value={password} onChange={this.passwordChange}>
         </input></label>
 
         <button id='signup_button' onClick={this.signUp} value='Create Account'>Create Account</button>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'photos/show'
+
   root 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do

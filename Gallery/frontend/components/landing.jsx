@@ -4,7 +4,9 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+      <img src="../../app/images/macaw.jpg"></img>
+      </div>
     );
   }
 
