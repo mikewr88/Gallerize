@@ -5,7 +5,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div>
-      <img src="../../app/images/macaw.jpg"></img>
+      <img id="landing-photo" src="http://i.imgur.com/XDeL7Q4.jpg"></img>
       </div>
     );
   }

@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+#landing-photo {
+  height: 400px;
+  widows: 500px;
+}
+
+*{
+  font-family: sans-serif;
+}

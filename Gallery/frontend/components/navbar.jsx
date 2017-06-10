@@ -1,6 +1,8 @@
 import React from 'react';
 import SessionStore from '../stores/session_store';
 import SessionActions from '../actions/client_actions/session_actions';
+import ImageActions from '../actions/client_actions/image_actions';
+import Upload from './add_photo';
 var Link = require('react-router-dom').Link;
 
 class Navbar extends React.Component {
@@ -9,9 +11,11 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       currentUser: SessionStore.currentUser()
+
     }
 
     this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   logOut() {
@@ -26,15 +30,26 @@ class Navbar extends React.Component {
     this.setState({currentUser: SessionStore.currentUser()});
   }
 
+  uploadImage(image_url) {
+    var user_id = this.state.currentUser.id;
+    ImageActions.createImage(image_url, user_id);
+  }
+
   render() {
     var Nav;
     if (this.state.currentUser) {
-      Nav = (<button onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>)
+      Nav = (<div>
+        <Upload setImage={this.uploadImage}/>
+        <button onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>
+    </div>)
     }else {
-        Nav = (<ul>
-                <li><Link to='/signup'> Sign Up </Link></li>
-                <li><Link to='/login'> Log In </Link></li>
-              </ul>)
+        Nav = (
+                <ul>
+                  <li><Link to='/signup'> Sign Up </Link></li>
+                  <li><Link to='/login'> Log In </Link></li>
+                </ul>
+
+              )
     }
 
     return (
