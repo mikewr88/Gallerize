@@ -1,1 +1,1 @@
-json.photos @user.photos
+json.photos @current_user.photos

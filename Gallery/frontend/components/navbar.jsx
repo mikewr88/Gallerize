@@ -4,6 +4,7 @@ import SessionActions from '../actions/client_actions/session_actions';
 import ImageActions from '../actions/client_actions/image_actions';
 import Upload from './add_photo';
 var Link = require('react-router-dom').Link;
+import Redirect from 'react-router';
 
 class Navbar extends React.Component {
 
@@ -37,11 +38,12 @@ class Navbar extends React.Component {
 
   render() {
     var Nav;
+    console.log(this.state.currentUser);
     if (this.state.currentUser) {
       Nav = (<div>
-        <Upload setImage={this.uploadImage}/>
-        <button onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>
-    </div>)
+              <Upload setImage={this.uploadImage}/>
+              <button onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>
+            </div>)
     }else {
         Nav = (
                 <ul>

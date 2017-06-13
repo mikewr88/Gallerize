@@ -2,6 +2,8 @@ import React from 'react';
 import SessionStore from '../stores/session_store';
 import SessionActions from '../actions/client_actions/session_actions';
 
+import {Redirect} from 'react-router';
+
 class Login extends React.Component {
 
   constructor(props) {
@@ -9,21 +11,25 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
-      errors: SessionStore.errors()
+      errors: SessionStore.errors(),
+      loggedIn: false
     };
     this.userChange = this.userChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.logIn = this.logIn.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.redirect = this.redirect.bind(this);
 
   }
 
   componentDidMount() {
     this.sessionListener = SessionStore.addListener(this.onChange);
+    this.userListener = SessionStore.addListener(this.redirect);
   }
 
   componentWillUnmount() {
     this.sessionListener.remove();
+    this.userListener.remove();
   }
 
   onChange() {
@@ -38,6 +44,13 @@ class Login extends React.Component {
     this.setState({password: event.target.value});
   }
 
+  redirect() {
+    if (SessionStore.currentUser()){
+
+      this.setState({loggedIn: true});
+    }
+  }
+
   logIn(event) {
     event.preventDefault();
     SessionActions.logIn({
@@ -49,16 +62,25 @@ class Login extends React.Component {
   render() {
     var username = this.state.username;
     var password = this.state.password;
-    return (
-      <div>
-        <form>
-          <label id='username'>Username: <input type='text' value={username} onChange={this.userChange}>
-          </input></label>
+    var LoginPage;
+    if (this.state.loggedIn) {
+      LoginPage = (<Redirect to={'my-photos'}/>);
+    }else {
+      LoginPage = (
+        <div>
+          <form>
+            <label id='username'>Username: <input type='text' value={username} onChange={this.userChange}>
+            </input></label>
 
-          <label id='password'>Password: <input type='password' value={password} onChange={this.passwordChange}>
-          </input></label>
-          <button id='login_button' onClick={this.logIn} value='Log In'>Log In</button>
-        </form>
+            <label id='password'>Password: <input type='password' value={password} onChange={this.passwordChange}>
+            </input></label>
+            <button id='login_button' onClick={this.logIn} value='Log In'>Log In</button>
+          </form>
+        </div>
+      )
+    }
+    return (<div>
+      {LoginPage}
       </div>
     );
   }

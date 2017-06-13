@@ -15,5 +15,16 @@ module.exports = {
         console.log('photo saved');
       }
     });
+  },
+
+  fetchPhotos: function () {
+    $.ajax({
+      method: 'GET',
+      url: 'api/photos',
+      success: function (data) {
+        ImageServerActions.receivePhotos(data.photos);
+
+      }
+    });
   }
 };

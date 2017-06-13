@@ -22,3 +22,22 @@
 *{
   font-family: sans-serif;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.gallery_container {
+  display: flex;
+  justify-content: flex-start;
+
+  -webkit-flex: wrap;
+  -ms-flex: wrap;
+  flex: wrap;
+}
+
+.photo_index {
+  height: 200px;
+  width: auto;
+  padding: 20px;
+}
