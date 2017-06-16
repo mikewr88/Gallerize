@@ -27,8 +27,7 @@ class AddPhoto extends React.Component {
     return (
       <div id='upload-button-container-container'>
       <div className="upload-button-container">
-        {thumbnail}
-        <button id="upload-button" onClick={this.upload}>Upload a Photo!</button>
+        <button id="auth-link-button" onClick={this.upload}>Upload a Photo!</button>
       </div>
     </div>
     );

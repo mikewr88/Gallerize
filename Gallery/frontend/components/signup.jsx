@@ -2,6 +2,8 @@ import React from 'react';
 import SessionStore from '../stores/session_store';
 import SessionActions from '../actions/client_actions/session_actions';
 
+import {Redirect} from 'react-router';
+
 class SignUp extends React.Component {
 
   constructor(props) {
@@ -9,22 +11,24 @@ class SignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
-      errors: SessionStore.errors()
+      errors: SessionStore.errors(),
+      loggedIn: false
     } ;
-
     this.userChange = this.userChange.bind(this);
     this.passwordChange = this.passwordChange.bind(this);
     this.signUp = this.signUp.bind(this);
     this.onChange = this.onChange.bind(this);
-
+    this.redirect = this.redirect.bind(this);
   }
 
   componentDidMount() {
     this.sessionListener = SessionStore.addListener(this.onChange);
+    this.userListener = SessionStore.addListener(this.redirect);
   }
 
   componentWillUnmount() {
     this.sessionListener.remove();
+    this.userListener.remove();
   }
 
   onChange() {
@@ -39,6 +43,13 @@ class SignUp extends React.Component {
     this.setState({password: event.target.value});
   }
 
+  redirect() {
+    if (SessionStore.currentUser()){
+
+      this.setState({loggedIn: true});
+    }
+  }
+
   signUp(event) {
     event.preventDefault();
     SessionActions.signUp({
@@ -51,17 +62,29 @@ class SignUp extends React.Component {
   render() {
     var username = this.state.username;
     var password = this.state.password;
+    var SignupPage;
+
+    if (this.state.loggedIn) {
+      SignupPage = (<Redirect to={'my-photos'}/>);
+    }else (
+      SignupPage = (
+        <div id='login-container'>
+        <div id='auth-text'>Create An Account And Get Started!</div>
+        <form id='login-form'>
+          <label>Create a Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
+          </input></label>
+
+          <label>Create a Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
+          </input></label>
+
+          <button id='login-button' onClick={this.signUp} value='Create Account'>Create Account</button>
+        </form>
+        </div>
+      )
+    )
     return (
       <div>
-      <form>
-        <label id='username'>Create a Username: <input type='text' value={username} onChange={this.userChange}>
-        </input></label>
-
-        <label id='password'>Create a Password: <input type='password' value={password} onChange={this.passwordChange}>
-        </input></label>
-
-        <button id='signup_button' onClick={this.signUp} value='Create Account'>Create Account</button>
-      </form>
+        {SignupPage}
       </div>
     );
   }

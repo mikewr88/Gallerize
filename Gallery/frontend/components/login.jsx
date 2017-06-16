@@ -19,7 +19,6 @@ class Login extends React.Component {
     this.logIn = this.logIn.bind(this);
     this.onChange = this.onChange.bind(this);
     this.redirect = this.redirect.bind(this);
-
   }
 
   componentDidMount() {
@@ -67,14 +66,15 @@ class Login extends React.Component {
       LoginPage = (<Redirect to={'my-photos'}/>);
     }else {
       LoginPage = (
-        <div>
-          <form>
-            <label id='username'>Username: <input type='text' value={username} onChange={this.userChange}>
+        <div id='login-container'>
+          <div id='auth-text'>Already Have An Account?</div>
+          <form id='login-form'>
+            <label>Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
             </input></label>
 
-            <label id='password'>Password: <input type='password' value={password} onChange={this.passwordChange}>
+            <label>Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
             </input></label>
-            <button id='login_button' onClick={this.logIn} value='Log In'>Log In</button>
+            <button id='login-button' onClick={this.logIn} value='Log In'>Log In</button>
           </form>
         </div>
       )
