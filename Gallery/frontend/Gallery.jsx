@@ -12,6 +12,7 @@ import LogIn from './components/login';
 import SignUp from './components/signup';
 import Landing from './components/landing';
 import PhotoGallery from './components/photo_gallery';
+import PhotoShow from './components/photo_show';
 
 class App extends React.Component {
   componentWillMount() {
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route path='/login' component={LogIn}/>
           <Route path='/signup' component={SignUp}/>
           <Route path='/my-photos' component={PhotoGallery}/>
+          <Route path='/photo/:photoId' component={PhotoShow}/>
       </div>);
   }
 };

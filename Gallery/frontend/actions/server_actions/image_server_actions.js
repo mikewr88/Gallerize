@@ -7,5 +7,13 @@ module.exports = {
       actionType: ImageConstants.PHOTOS_RECEIVED,
       photos: photos
     });
+  },
+
+  receivePhoto: function (photo) {
+    AppDispatcher.dispatch({
+      actionType: ImageConstants.PHOTO_RECEIVED,
+      photo: photo
+    });
   }
+
 };

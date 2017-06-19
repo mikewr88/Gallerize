@@ -12,7 +12,7 @@ module.exports = {
                     }
           },
       success: function (photo) {
-        console.log('photo saved');
+        ImageServerActions.receivePhoto(photo);
       }
     });
   },

@@ -189,15 +189,18 @@ ul {
   max-width: 90vw;
 
 
-  -webkit-flex: wrap;
-  -ms-flex: wrap;
-  flex: wrap;
+  flex-wrap: wrap;
 }
 
-.photo_index {
+.photo_index_item {
   height: 200px;
   width: auto;
-  
+
+}
+
+.photo-item-image {
+  height: 200px;
+  width: auto;
 }
 
 /*Login page---------------------------------*/

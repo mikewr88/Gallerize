@@ -1,15 +1,21 @@
 import React from 'react';
+import ImageStore from '../stores/image_store';
 
 class PhotoShow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = ;
+
+    this.state = {
+      photo: ImageStore.find(parseInt(this.props.match.params.photoId))
+    }
   }
 
   render() {
     return (
-      <div></div>
+      <div id='photo-show-container'>
+        <img src={this.state.photo.image_url}></img>
+      </div>
     );
   }
 

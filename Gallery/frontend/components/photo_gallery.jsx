@@ -2,6 +2,7 @@ import React from 'react';
 import ImageStore from '../stores/image_store';
 
 import ImageActions from '../actions/client_actions/image_actions';
+import PhotoItem from './photo_item';
 
 
 class PhotoGallery extends React.Component {
@@ -33,13 +34,16 @@ updatePhotos() {
 }
 
   render() {
-    console.log(this.state.photos);
+
     var photosArray = [];
     var photos = this.state.photos;
 
-    photos.forEach( function (photo) {
-      photosArray.push(<li key = {photo.id}><img className='photo_index' src={photo.image_url}></img></li>)
-    });
+    if (this.state.photos) {
+      console.log(this.state.photos);
+      photos.forEach( function (photo) {
+        photosArray.push(<PhotoItem className='photo-index-item' key = {photo.id} photo={photo}></PhotoItem>)
+      });
+    };
 
     return (
       <div>
