@@ -26,5 +26,9 @@ module.exports = {
 
       }
     });
+  },
+
+  resetId: function () {
+    ImageServerActions.resetId();
   }
 };

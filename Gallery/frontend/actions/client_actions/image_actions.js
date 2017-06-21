@@ -7,5 +7,9 @@ module.exports = {
 
   fetchPhotos: function () {
     ImageApiUtil.fetchPhotos();
+  },
+
+  resetId: function () {
+    ImageApiUtil.resetId();
   }
 };

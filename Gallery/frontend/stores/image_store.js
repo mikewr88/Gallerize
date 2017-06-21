@@ -3,7 +3,7 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var ImageConstants = require('../constants/image_constants');
 var ImageStore = new Store(AppDispatcher);
 
-var _photos;
+var _photos, _newPhotoId = null;
 ImageStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case ImageConstants.PHOTOS_RECEIVED:
@@ -13,6 +13,10 @@ ImageStore.__onDispatch = function (payload) {
     case ImageConstants.PHOTO_RECEIVED:
       ImageStore.receivePhoto(payload.photo);
       ImageStore.__emitChange();
+      break;
+    case ImageConstants.RESET_ID:
+      ImageStore.resetId();
+      
       break;
   }
 
@@ -27,8 +31,12 @@ ImageStore.receivePhotos = function (photos) {
 
 ImageStore.receivePhoto = function (photo) {
   _photos[photo.id] = photo;
-
+  _newPhotoId = photo.id;
 };
+
+ImageStore.newPhotoId = function () {
+  return _newPhotoId;
+}
 
 ImageStore.allPhotos = function () {
   var photos = [];
@@ -43,6 +51,10 @@ ImageStore.find = function (photoId) {
     return {};
   }
   return Object.assign({}, _photos[photoId]);
+};
+
+ImageStore.resetId = function () {
+  _newPhotoId = null;
 };
 
 module.exports = ImageStore;

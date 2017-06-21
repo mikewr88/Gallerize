@@ -1,9 +1,15 @@
 import React from 'react';
 import ImageStore from '../stores/image_store';
 
+import Masonry from 'react-masonry-component';
+
 import ImageActions from '../actions/client_actions/image_actions';
 import PhotoItem from './photo_item';
 
+
+var MasonryOptions = {
+  isFitWidth: true
+};
 
 class PhotoGallery extends React.Component {
 
@@ -46,10 +52,10 @@ updatePhotos() {
     };
 
     return (
-      <div>
-        <ul className="gallery_container">
+      <div id='masonry-container'>
+        <Masonry elementType={'ul'} className={'gallery_container'} options={MasonryOptions} disableImagesLoaded={false}>
           {photosArray}
-        </ul>
+        </Masonry>
       </div>
     );
   }
@@ -62,3 +68,12 @@ export default PhotoGallery;
 //need to get the photos of the current logged in user to show in a gallery format.
 // populate the imageStore and then pull the images from there.
 // state.photos
+//
+
+// previous working before masonry for safety
+
+// <div>
+//   <ul className="gallery_container">
+//     {photosArray}
+//   </ul>
+// </div>
