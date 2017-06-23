@@ -1,16 +1,25 @@
 import React from 'react';
-import Photos from '../constants/landing_photos';
+import PhotosConstants from '../constants/landing_photos';
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
-    
+
+  }
+
+  componentDidMount() {
+
   }
 
   render() {
+    var images = [];
+    console.log(PhotosConstants);
+    for (var i in PhotosConstants) {
+      images.push(<img key={i} id="landing-photo" src={PhotosConstants[i]}></img>)
+    };
     return (
       <div id='landing-photo-container'>
-      <img id="landing-photo" src="http://i.imgur.com/XDeL7Q4.jpg"></img>
+      {images}
       </div>
     );
   }

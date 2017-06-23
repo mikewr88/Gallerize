@@ -16,7 +16,11 @@ ImageStore.__onDispatch = function (payload) {
       break;
     case ImageConstants.RESET_ID:
       ImageStore.resetId();
-      
+
+      break;
+    case ImageConstants.PHOTO_UPDATE:
+      ImageStore.updatePhoto(payload.photo);
+      ImageStore.__emitChange();
       break;
   }
 
@@ -34,9 +38,13 @@ ImageStore.receivePhoto = function (photo) {
   _newPhotoId = photo.id;
 };
 
+ImageStore.updatePhoto = function (photo) {
+  _photos[photo.id] = photo;
+}
+
 ImageStore.newPhotoId = function () {
   return _newPhotoId;
-}
+};
 
 ImageStore.allPhotos = function () {
   var photos = [];

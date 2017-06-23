@@ -18,6 +18,13 @@ module.exports = {
     });
   },
 
+  updatePhoto: function (photo) {
+    AppDispatcher.dispatch({
+      actionType: ImageConstants.PHOTO_UPDATE,
+      photo: photo
+    });
+  },
+
   resetId: function () {
     console.log('reset');
     AppDispatcher.dispatch({

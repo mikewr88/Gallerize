@@ -11,5 +11,9 @@ module.exports = {
 
   resetId: function () {
     ImageApiUtil.resetId();
+  },
+
+  updateInfo: function (info) {
+    ImageApiUtil.updateInfo(info.title, info.description, info.id);
   }
 };

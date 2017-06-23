@@ -4,11 +4,11 @@ module.exports = {
   createImage: function (image_url, user_id) {
     $.ajax({
       method: 'POST',
-      url: 'api/photo',
+      url: 'api/photos',
       data: {photo: {image_url: image_url,
                      user_id: user_id,
-                     description: 'test',
-                     title: 'test photo'
+                     description: 'Add a Description',
+                     title: 'Title'
                     }
           },
       success: function (photo) {
@@ -24,6 +24,20 @@ module.exports = {
       success: function (data) {
         ImageServerActions.receivePhotos(data.photos);
 
+      }
+    });
+  },
+
+  updateInfo: function (title, description, id) {
+    $.ajax({
+      method: 'PATCH',
+      url: 'api/photos/' + id.toString() ,
+      data: {photo: {
+        title: title,
+        description: description
+      }},
+      success: function (updatedPhoto) {
+        ImageServerActions.updatePhoto(updatedPhoto);
       }
     });
   },
