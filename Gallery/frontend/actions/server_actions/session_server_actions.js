@@ -3,7 +3,6 @@ var SessionConstants = require('../../constants/session_constants');
 
 module.exports = {
   logIn: function (user) {
-    console.log('session login');
     AppDispatcher.dispatch({
         actionType: SessionConstants.LOGIN,
         user: user
@@ -11,7 +10,6 @@ module.exports = {
   },
 
   signUp: function (user) {
-    console.log('session sign up');
     AppDispatcher.dispatch({
         actionType: SessionConstants.SIGNUP,
         user: user
@@ -19,7 +17,6 @@ module.exports = {
   },
 
   logOut: function () {
-    console.log('session log out');
     AppDispatcher.dispatch({
       actionType: SessionConstants.LOGOUT
     });

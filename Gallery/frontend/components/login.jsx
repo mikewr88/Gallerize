@@ -63,6 +63,7 @@ class Login extends React.Component {
     var password = this.state.password;
     var LoginPage;
     if (this.state.loggedIn) {
+
       LoginPage = (<Redirect to={'my-photos'}/>);
     }else {
       LoginPage = (

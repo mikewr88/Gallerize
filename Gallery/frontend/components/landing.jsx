@@ -13,7 +13,6 @@ class Landing extends React.Component {
 
   render() {
     var images = [];
-    console.log(PhotosConstants);
     for (var i in PhotosConstants) {
       images.push(<img key={i} id="landing-photo" src={PhotosConstants[i]}></img>)
     };

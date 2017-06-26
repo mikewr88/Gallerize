@@ -4,6 +4,7 @@ var Router = require('react-router-dom').HashRouter;
 var Route = require('react-router-dom').Route;
 var IndexRoute = require('react-router').IndexRoute;
 var Link = require('react-router').Link;
+var Modal = require('react-modal');
 
 import SessionActions from './actions/client_actions/session_actions';
 
@@ -14,9 +15,11 @@ import Landing from './components/landing';
 import PhotoGallery from './components/photo_gallery';
 import PhotoShow from './components/photo_show';
 
+
 class App extends React.Component {
   componentWillMount() {
     SessionActions.fetchCurrentUser();
+
   }
 
   render() {
@@ -32,6 +35,7 @@ class App extends React.Component {
 };
 
 document.addEventListener("DOMContentLoaded", function (){
+  Modal.setAppElement('#root');
   ReactDOM.render(<Router><App /></Router>,
                   document.getElementById("root"));
 });

@@ -3,7 +3,6 @@ var ImageConstants = require('../../constants/image_constants');
 
 module.exports = {
   receivePhotos: function (photos) {
-    console.log('receivePhotos');
     AppDispatcher.dispatch({
       actionType: ImageConstants.PHOTOS_RECEIVED,
       photos: photos
@@ -11,7 +10,6 @@ module.exports = {
   },
 
   receivePhoto: function (photo) {
-    console.log('receivePhoto');
     AppDispatcher.dispatch({
       actionType: ImageConstants.PHOTO_RECEIVED,
       photo: photo
@@ -26,7 +24,6 @@ module.exports = {
   },
 
   resetId: function () {
-    console.log('reset');
     AppDispatcher.dispatch({
       actionType: ImageConstants.RESET_ID
     });

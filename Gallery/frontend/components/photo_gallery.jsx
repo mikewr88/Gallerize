@@ -45,7 +45,6 @@ updatePhotos() {
     var photos = this.state.photos;
 
     if (this.state.photos) {
-      console.log(this.state.photos);
       photos.forEach( function (photo) {
         photosArray.push(<PhotoItem className='photo-index-item' key = {photo.id} photo={photo}></PhotoItem>)
       });
