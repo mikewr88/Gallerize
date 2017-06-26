@@ -3,7 +3,7 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var ImageConstants = require('../constants/image_constants');
 var ImageStore = new Store(AppDispatcher);
 
-var _photos, _newPhotoId = null;
+var _photos = {}, _newPhotoId = null;
 ImageStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case ImageConstants.PHOTOS_RECEIVED:
