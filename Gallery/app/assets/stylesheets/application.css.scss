@@ -93,7 +93,6 @@
   }
 }
 
-/*Nav bar and auth links----------------------*/
 
 #nav-bar-container {
   background: rgba(138,206,245,1);
@@ -161,7 +160,6 @@
   transition: background-color 0.2s ease;
 }
 
-// underline transition -----------------
 .underline {
   position: relative;
 
@@ -184,7 +182,6 @@
   }
 }
 
-// ----------------------------------
 
 #auth-link-button:active {
   background: rgba(227,244,255,1);
@@ -242,9 +239,7 @@ ul {
   top: 100px;
   justify-content: center;
 
-  // min-width: 70vw;
-  // min-height: 100vh;
-  // max-width: 90vw;
+
   width: 90vw;
   margin: 0px;
   margin-bottom: 10px;
@@ -253,8 +248,7 @@ ul {
 }
 
 .photo_index_item {
-  // height: 200px;
-  // width: auto;
+
   width: 30vw;
   min-width: 300px;
   height: auto;
@@ -264,8 +258,7 @@ ul {
 }
 
 .photo-item-image {
-  // height: 200px;
-  // width: auto;
+
   width: 25vw;
   min-width: 250px;
   height: auto;
@@ -280,7 +273,7 @@ ul {
   }
 }
 
-/*Login page---------------------------------*/
+
 
 #login-container {
   display: flex;
@@ -351,7 +344,7 @@ label {
   height: 28px;
 }
 
-// photo show page -----------------------------------
+
 
 #photo-show-container {
   display: flex;
@@ -367,6 +360,3 @@ label {
   height: auto;
   max-height: 80vh;
 }
-
-
-// --------------

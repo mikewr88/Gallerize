@@ -96,7 +96,7 @@ class Navbar extends React.Component {
       if (this.state.loggedIn){
         MyPhotosRedirect = (<Redirect to={'my-photos'}></Redirect>)
         this.changeLoggedIn();
-        
+
       }
       Nav = (
             <div id="logged-in-nav-container">
@@ -145,6 +145,3 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
-
-// <Link to='/signup' id='auth-link-button'> Sign Up </Link>
-// <Link to='/login' id='auth-link-button'> Log In </Link>
