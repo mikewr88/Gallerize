@@ -70,10 +70,10 @@ class Login extends React.Component {
         <div id='login-container'>
           <div id='auth-text'>Already Have An Account?</div>
           <form id='login-form'>
-            <label>Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
+            <label id='auth-label'>Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
             </input></label>
 
-            <label>Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
+            <label id='auth-label'>Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
             </input></label>
             <button id='login-button' onClick={this.logIn} value='Log In'>Log In</button>
           </form>

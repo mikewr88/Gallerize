@@ -12,6 +12,31 @@ import SignUp from './signup';
 var Link = require('react-router-dom').Link;
 import {Redirect} from 'react-router';
 
+var ModalStyle = {
+  overlay: {
+    position        : 'fixed',
+    top             : 0,
+    left            : 0,
+    right           : 0,
+    bottom          : 0,
+    backgroundColor : 'rgba(255, 255, 255, 0)'
+  },
+  content: {
+    position                : 'absolute',
+    top                     : '40px',
+    left                    : '40px',
+    right                   : '40px',
+    bottom                  : '40px',
+    border                  : '0px solid #ccc',
+    backgroundColor         : 'rgba(255, 255, 255, 0)',
+    overflow                : 'auto',
+    WebkitOverflowScrolling : 'touch',
+    borderRadius            : '0px',
+    outline                 : 'none',
+    padding                 : '20px'
+  }
+}
+
 class Navbar extends React.Component {
 
   constructor(props) {
@@ -33,6 +58,7 @@ class Navbar extends React.Component {
     this.loginModalClose = this.loginModalClose.bind(this);
     this.signupModalClose = this.signupModalClose.bind(this);
     this.changeLoggedIn = this.changeLoggedIn.bind(this);
+    this.changeLoggedInFalse = this.changeLoggedInFalse.bind(this);
   }
 
   logOut() {
@@ -40,8 +66,9 @@ class Navbar extends React.Component {
   }
 
   componentWillMount() {
-    this.sessionListener = SessionStore.addListener(this.getCurrentUser)
-    this.imageListener = ImageStore.addListener(this.getPhotoId)
+    this.sessionListener = SessionStore.addListener(this.getCurrentUser);
+    this.loggedInListener = SessionStore.addListener(this.changeLoggedIn);
+    this.imageListener = ImageStore.addListener(this.getPhotoId);
   }
 
   getCurrentUser() {
@@ -84,6 +111,12 @@ class Navbar extends React.Component {
   }
 
   changeLoggedIn() {
+    if (this.state.currentUser && this.props.match.path == '/') {
+      this.setState({loggedIn: true});
+    }
+  }
+
+  changeLoggedInFalse() {
     this.setState({loggedIn: false});
   }
 
@@ -91,13 +124,16 @@ class Navbar extends React.Component {
     var Nav;
     var MyPhotosRedirect;
     var linkTo = '/';
+    var NavClass;
     if (this.state.currentUser) {
       linkTo = '/my-photos';
       if (this.state.loggedIn){
+        console.log('should Redirect');
         MyPhotosRedirect = (<Redirect to={'my-photos'}></Redirect>)
-        this.changeLoggedIn();
+        this.changeLoggedInFalse();
 
       }
+      NavClass = '';
       Nav = (
             <div id="logged-in-nav-container">
             {MyPhotosRedirect}
@@ -108,13 +144,14 @@ class Navbar extends React.Component {
               </div>
             )
     }else {
+        NavClass = 'hidden';
         Nav = (<div id='auth-link-container'>
                 <Redirect to={'/'}/>
-                  <Modal parentSelector={this.getParent} className='login-modal' isOpen={this.state.loginModalOpen} onRequestClose={this.loginModalClose} contentLabel='login modal'>
+                  <Modal parentSelector={this.getParent} className='login-modal' isOpen={this.state.loginModalOpen} onRequestClose={this.loginModalClose} contentLabel='login modal' style={ModalStyle}>
                     <LogIn/>
                   </Modal>
 
-                  <Modal parentSelector={this.getParent} className='signup-modal' isOpen={this.state.signupModalOpen} onRequestClose={this.signupModalClose} contentLabel='signup modal'>
+                  <Modal parentSelector={this.getParent} className='signup-modal' isOpen={this.state.signupModalOpen} onRequestClose={this.signupModalClose} contentLabel='signup modal' style={ModalStyle}>
                     <SignUp/>
                   </Modal>
 
@@ -131,10 +168,10 @@ class Navbar extends React.Component {
     }
 
     return (
-      <div id='nav-bar-container'>
+      <div id='nav-bar-container' className = {NavClass}>
         {redirect}
       <div id='nav-title-container'>
-      <Link to={linkTo} id='nav-title' className='underline'>Gallerize</Link>
+      <Link to={linkTo} id='nav-title' className='underline'>Galleryze</Link>
       </div>
         {Nav}
        {this.props.children}

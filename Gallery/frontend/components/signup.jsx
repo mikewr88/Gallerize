@@ -71,10 +71,10 @@ class SignUp extends React.Component {
         <div id='login-container'>
         <div id='auth-text'>Create An Account And Get Started!</div>
         <form id='login-form'>
-          <label>Create a Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
+          <label id='auth-label'>Create a Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
           </input></label>
 
-          <label>Create a Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
+          <label id='auth-label'>Create a Password:  <input type='password' id='password-input' value={password} onChange={this.passwordChange}>
           </input></label>
 
           <button id='login-button' onClick={this.signUp} value='Create Account'>Create Account</button>
