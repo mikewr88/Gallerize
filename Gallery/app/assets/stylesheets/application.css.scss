@@ -403,12 +403,20 @@ label {
 }
 
 
+#show-page {
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+}
+
 
 #photo-show-container {
   display: flex;
   position: relative;
-  top: 110px;
-  justify-content: space-around;
+  width: 80%;
+  top: 210px;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -417,4 +425,26 @@ label {
   min-width: 40vw;
   height: auto;
   max-height: 80vh;
+}
+
+#show-text-container {
+  width: 50%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-button {
+  height: 30px;
+  width: 80px;
+  font-size: 20px;
+  background-color: rgba(33,108,166,1);
+  border-radius: 5px, 5px, 5px, 5px;
+  color: white;
+}
+
+.show-text {
+  font-size: 20px;
 }
