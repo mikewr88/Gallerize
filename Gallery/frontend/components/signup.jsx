@@ -69,7 +69,7 @@ class SignUp extends React.Component {
     }else (
       SignupPage = (
         <div id='login-container'>
-        <div id='auth-text'>Create An Account And Get Started!</div>
+        <div id='auth-text'></div>
         <form id='login-form'>
           <label id='auth-label'>Create a Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
           </input></label>

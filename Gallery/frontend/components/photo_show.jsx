@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageStore from '../stores/image_store';
 import ImageActions from '../actions/client_actions/image_actions';
+import {Redirect} from 'react-router';
 
 class PhotoShow extends React.Component {
 
@@ -11,7 +12,8 @@ class PhotoShow extends React.Component {
       photo: ImageStore.find(parseInt(this.props.match.params.photoId)),
       title: ImageStore.find(parseInt(this.props.match.params.photoId)).title,
       description: ImageStore.find(parseInt(this.props.match.params.photoId)).description,
-      edit: false
+      edit: false,
+      redirect: false
     }
 
     this.getPhoto = this.getPhoto.bind(this);
@@ -19,6 +21,8 @@ class PhotoShow extends React.Component {
     this.descriptionChange = this.descriptionChange.bind(this);
     this.changeInfo = this.changeInfo.bind(this);
     this.edit = this.edit.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +52,14 @@ class PhotoShow extends React.Component {
     this.setState({edit: true});
   }
 
+  cancel(e) {
+    this.setState({edit: false});
+  }
+
+  redirect() {
+    this.setState({redirect: true});
+  }
+
   render() {
     var title = this.state.title;
     var description = this.state.description;
@@ -58,11 +70,14 @@ class PhotoShow extends React.Component {
           <img id='photo-show-img' src={this.state.photo.image_url}></img>
 
           <div id='show-text-container'>
-            <button className='show-button' onClick={this.changeInfo} value='Save'>Save</button>
 
-            <label>Title:  <input type='text' value={title} onChange={this.titleChange} ></input></label>
-            <label>Description:  <input type='text' value={description} onChange={this.descriptionChange} ></input></label>
+            <label className='show-text show-label'>Title:    <input className='show-text title-field' type='text' value={title} onChange={this.titleChange} ></input></label>
+            <label className='show-text show-label'>Description:     <textarea className='show-text desc-field' cols='40' rows='4' value={description} onChange={this.descriptionChange} ></textarea></label>
 
+            <div id='show-button-container'>
+            <button className='show-button' onClick={this.changeInfo} value='Save Changes'>Save Changes</button>
+            <button className='show-button' onClick={this.cancel} value='Cancel'>Cancel</button>
+            </div>
           </div>
         </div>
       )
@@ -80,9 +95,15 @@ class PhotoShow extends React.Component {
         </div>
       )
     }
+    var redirectToMyPhotos;
+    if (this.state.redirect) {
+      redirectToMyPhotos = (<Redirect to={'/my-photos'}></Redirect>)
+    }
     return (
       <div id='show-page'>
-      {ShowPage}
+        {redirectToMyPhotos}
+        <button id='back-button' onClick={this.redirect}>Back</button>
+        {ShowPage}
       </div>
     );
   }

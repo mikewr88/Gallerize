@@ -68,7 +68,7 @@ class Login extends React.Component {
     }else {
       LoginPage = (
         <div id='login-container'>
-          <div id='auth-text'>Already Have An Account?</div>
+          <div id='auth-text'></div>
           <form id='login-form'>
             <label id='auth-label'>Username:  <input type='text' id='username-input' value={username} onChange={this.userChange} autoFocus>
             </input></label>

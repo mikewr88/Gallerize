@@ -25,9 +25,11 @@ class PhotoItem extends React.Component {
       redirect = (<Redirect to={"/photo/" + this.state.photo_show_id}></Redirect>)
     }
     return (
-      <li key={this.props.photo.id} >
+      <li id='photo-item-container' key={this.props.photo.id} >
         {redirect}
-        <img className='photo-item-image' src={this.props.photo.image_url} onClick={this.photoShow}></img>
+        <div id='title-overlay' onClick={this.photoShow}>{this.props.photo.title}</div>
+        <img className='photo-item-image' src={this.props.photo.image_url}>
+        </img>
       </li>
     );
   }

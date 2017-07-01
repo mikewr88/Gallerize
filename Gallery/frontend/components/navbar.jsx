@@ -34,6 +34,7 @@ var ModalStyle = {
     borderRadius            : '0px',
     outline                 : 'none',
     padding                 : '20px'
+
   }
 }
 
@@ -139,7 +140,7 @@ class Navbar extends React.Component {
             {MyPhotosRedirect}
                 <Upload setImage={this.uploadImage}/>
                 <div id="logout-container">
-                  <button  id='auth-link-button' className='logout' onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>
+                  <button  id='auth-link-button' className='logout underline' onClick={this.logOut.bind(this)} value='Log Out'>Log Out</button>
                 </div>
               </div>
             )
@@ -155,8 +156,8 @@ class Navbar extends React.Component {
                     <SignUp/>
                   </Modal>
 
-                  <button id='auth-link-button' onClick={this.openLoginModal}>Log In</button>
-                  <button id='auth-link-button' onClick={this.openSignupModal}>Sign Up</button>
+                  <button id='auth-link-button' className='underline' onClick={this.openLoginModal}>Log In</button>
+                  <button id='auth-link-button' className='underline' onClick={this.openSignupModal}>Sign Up</button>
 
               </div>
               )
@@ -171,7 +172,7 @@ class Navbar extends React.Component {
       <div id='nav-bar-container' className = {NavClass}>
         {redirect}
       <div id='nav-title-container'>
-      <Link to={linkTo} id='nav-title' className='underline'>Galleryze</Link>
+      <Link to={linkTo} id='nav-title' className='underline'>GALLERYZE</Link>
       </div>
         {Nav}
        {this.props.children}
